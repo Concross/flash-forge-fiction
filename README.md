@@ -10,7 +10,7 @@ Flash Forge Fiction is developed as part of the Dev Quest challenge, specificall
 
 - **Challenge Link:** [Dev Quest 008 - Flash Forge Fiction](https://quine.notion.site/008-Devs-just-wanna-have-fun-224ef86c2dd143b1873c49c8edd3e316)
 
-  - This challenge tasks developers with creating a minimum viable product (MVP) for a collaborative writing platform, emphasizing creativity, simplicity, and user engagement.
+  - This challenge tasks developers with building an app that can help people have fun!
 
 - **Required Tools:**
   - **[FlagSmith](https://flagsmith.com/):** A feature flag and remote config service. FlagSmith allows us to test new features like voting systems and story direction choices in a controlled manner, enabling or disabling features without deploying new code.
