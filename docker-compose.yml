@@ -1,0 +1,21 @@
+version: '3'
+services:
+  db:
+    restart: always
+    image: mysql:latest
+    env_file: ./.env
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: $MYSQL_ROOT_PASSWORD
+      MYSQL_DATABASE: $MYSQL_DATABASE
+      MYSQL_USER: $MYSQL_USER
+      MYSQL_PASSWORD: $MYSQL_PASSWORD
+
+  adminer:
+    restart: always
+    image: adminer
+    ports:
+      - 8080:8080
+    depends_on:
+      - db
