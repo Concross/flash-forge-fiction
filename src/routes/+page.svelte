@@ -1,15 +1,20 @@
-<!-- YOU CAN DELETE EVERYTHING IN THIS PAGE -->
+<script lang="ts">
+	import { signIn, signOut } from '@auth/sveltekit/client';
+
+	import { page } from '$app/stores';
+	console.log($page.data.session);
+</script>
 
 <div class="container h-full mx-auto flex justify-center items-center">
 	<div class="space-y-5">
-		<h1 class="h1">Let's get cracking bones!</h1>
-		<p>Start by exploring:</p>
-		<ul>
-			<li><code class="code">/src/routes/+layout.svelte</code> - barebones layout</li>
-			<li><code class="code">/src/app.postcss</code> - app wide css</li>
-			<li>
-				<code class="code">/src/routes/+page.svelte</code> - this page, you can replace the contents
-			</li>
-		</ul>
+		{#if $page.data.session}
+			<div>
+				<p>Welcome, {$page.data.session.user?.email}</p>
+				<button on:click={() => signOut()}>Sign out</button>
+			</div>
+		{:else}
+			<p>Not signed in</p>
+			<button on:click={() => signIn('github')}>Sign in with GitHub</button>
+		{/if}
 	</div>
 </div>
