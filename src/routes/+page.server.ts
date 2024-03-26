@@ -1,10 +1,11 @@
 import type { PageServerLoad } from './$types';
 import prisma from '$lib/prisma';
 
-export const load: PageServerLoad = async ({ locals }) => {
-	const session = await locals.auth();
+export const load: PageServerLoad = async () => {
 	const response = await prisma.story.findMany({
-		where: { userId: session?.user?.id }
+		orderBy: {
+			createdAt: 'desc'
+		}
 	});
 
 	return { stories: response };
