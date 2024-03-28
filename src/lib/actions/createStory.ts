@@ -1,16 +1,21 @@
 import { fail, redirect } from '@sveltejs/kit';
 
 import type { Action } from '@sveltejs/kit';
-import prisma from '$lib/prisma';
+import Prisma from '@prisma/client';
+import prisma from '$lib/server/prisma';
 
 export const createStory: Action = async ({ request, locals }) => {
 	const data = await request.formData();
 	const title = data.get('title');
 	const content = data.get('content');
 	const session = await locals.auth();
-	const userId = session?.user?.id;
+	const user: Prisma.User | null = await prisma.user.findUnique({
+		where: {
+			email: session?.user?.email ?? undefined
+		}
+	});
 
-	if (!userId) {
+	if (!user?.id) {
 		return fail(401, { message: 'Unauthorized' });
 	}
 
@@ -18,7 +23,7 @@ export const createStory: Action = async ({ request, locals }) => {
 		data: {
 			title: title as string,
 			content: content as string,
-			userId: userId
+			userId: user.id
 		}
 	});
 

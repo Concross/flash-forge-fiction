@@ -1,7 +1,7 @@
 import { SvelteKitAuth } from '@auth/sveltekit';
 import GitHub from '@auth/sveltekit/providers/github';
 import { PrismaAdapter } from '@auth/prisma-adapter';
-import prisma from '$lib/prisma';
+import prisma from '$lib/server/prisma';
 
 import { AUTH_GITHUB_CLIENT_ID, AUTH_GITHUB_CLIENT_SECRET } from '$env/static/private';
 

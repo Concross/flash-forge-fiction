@@ -20,10 +20,10 @@ services:
     depends_on:
       - db
 
-  # minds:
-  #   restart: always
-  #   image: mindsdb/mindsdb:latest
-  #   ports:
-  #     - 47334:47334
-  #   depends_on:
-  #     - db
+  minds:
+    restart: always
+    image: mindsdb/mindsdb:v24.3.5.0-arm64
+    ports:
+      - 47334:47334
+    depends_on:
+      - db
