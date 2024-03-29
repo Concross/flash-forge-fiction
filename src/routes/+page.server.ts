@@ -24,6 +24,8 @@ export const load: PageServerLoad = async () => {
 			'text_summarization_model',
 			MINDSDB_PROJECT
 		);
+
+		console.log('Model:', summarizationModel);
 		const response = await summarizationModel.batchQuery({
 			join: `${MYSQL_DATABASE}.Story`
 		});
