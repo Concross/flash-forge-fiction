@@ -1,9 +1,8 @@
 <script lang="ts">
 	import Prisma from '@prisma/client';
-	import MindsDB from 'mindsdb-js-sdk';
-	import connect from '$lib/server/minds';
 
-	export let story: Prisma.Story | null;
+	type StoryWithSummary = Prisma.Story & { summary: string };
+	export let story: StoryWithSummary | null;
 	export let creatorCard = false;
 
 	let editing = false;
@@ -45,7 +44,7 @@
 		{/if}
 	{:else}
 		<h2 class="text-2xl font-bold text-token">{story?.title || 'Title'}</h2>
-		<p class="text-token">{story?.content || 'Content'}</p>
+		<p class="text-token">{story?.summary || story?.content || 'Content'}</p>
 	{/if}
 </div>
 

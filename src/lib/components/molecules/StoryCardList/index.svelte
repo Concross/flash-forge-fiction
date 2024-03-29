@@ -2,7 +2,9 @@
 	import Prisma from '@prisma/client';
 	import StoryCard from '$lib/components/atoms/StoryCard/index.svelte';
 
-	export let stories: Prisma.Story[];
+	type StoryWithSummary = Prisma.Story & { summary: string };
+
+	export let stories: StoryWithSummary[];
 </script>
 
 {#if stories}
