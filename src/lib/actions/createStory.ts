@@ -27,7 +27,8 @@ export const createStory: Action = async ({ request, locals }) => {
 		data: {
 			title: title as string,
 			content: content as string,
-			userId: user.id
+			userId: user.id,
+			summaryRequestedAt: new Date()
 		}
 	});
 

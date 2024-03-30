@@ -43,8 +43,10 @@
 			<button on:click={startEditing} class="text-xl">+</button>
 		{/if}
 	{:else}
-		<h2 class="text-2xl font-bold text-token">{story?.title || 'Title'}</h2>
-		<p class="text-token">{story?.summary || story?.content || 'Content'}</p>
+		<a href={`story/${story?.id}`}>
+			<h2 class="text-2xl font-bold text-token">{story?.title || 'Title'}</h2>
+			<p class="text-token">{story?.summary || story?.content || 'Content'}</p>
+		</a>
 	{/if}
 </div>
 

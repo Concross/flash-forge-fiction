@@ -51,6 +51,7 @@
 		"mindsdb-js-sdk": "^2.3.0",
 		"prisma": "^5.11.0",
 		"sql-escape-string": "^1.1.0",
+		"svelte-typewriter": "^3.2.3",
 		"ts-node": "^10.9.2"
 	}
 }
