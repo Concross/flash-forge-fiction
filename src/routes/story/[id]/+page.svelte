@@ -7,6 +7,7 @@
 
 	const modalStore = getModalStore();
 	let tabSet: number = 0;
+
 	const modal: ModalSettings = {
 		type: 'component',
 		component: 'storyContinuationModal',

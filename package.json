@@ -48,6 +48,7 @@
 		"@auth/sveltekit": "^0.14.0",
 		"@floating-ui/dom": "1.6.3",
 		"@prisma/client": "5.11.0",
+		"flagsmith": "^3.24.0",
 		"mindsdb-js-sdk": "^2.3.0",
 		"prisma": "^5.11.0",
 		"sql-escape-string": "^1.1.0",

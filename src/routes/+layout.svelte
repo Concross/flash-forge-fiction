@@ -1,6 +1,7 @@
 <script lang="ts">
 	import '../app.postcss';
 
+	import { onMount } from 'svelte';
 	// Floating UI for Popups
 	import { computePosition, autoUpdate, flip, shift, offset, arrow } from '@floating-ui/dom';
 	import {
@@ -11,10 +12,14 @@
 		initializeStores,
 		type ModalComponent
 	} from '@skeletonlabs/skeleton';
-
 	import { signIn, signOut } from '@auth/sveltekit/client';
 	import { page } from '$app/stores';
 	import StoryContinuationModal from '$lib/components/atoms/StoryContinuationModal/index.svelte';
+
+	onMount(async () => {
+		const flagsmith = (await import('flagsmith/isomorphic')).default;
+		flagsmith.setState($page.data.flagsmithState);
+	});
 
 	const modalRegistry: Record<string, ModalComponent> = {
 		storyContinuationModal: { ref: StoryContinuationModal }
@@ -22,6 +27,7 @@
 
 	initializeStores();
 	storePopup.set({ computePosition, autoUpdate, flip, shift, offset, arrow });
+	$: console.log($page.data);
 </script>
 
 <Modal components={modalRegistry} />
