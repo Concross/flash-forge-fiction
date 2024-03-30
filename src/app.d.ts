@@ -5,7 +5,7 @@
 declare namespace App {
 	interface Locals {
 		flags?: {
-			enable_ai_summarization: boolean;
+			ai_summarization: IFlagsmithResponse;
 		};
 	}
 	// interface PageData {}

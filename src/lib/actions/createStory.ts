@@ -33,7 +33,7 @@ export const createStory: Action = async ({ request, locals }) => {
 		}
 	});
 
-	if (locals.flags?.enable_ai_summarization) {
+	if (locals.flags?.ai_summarization.enabled) {
 		try {
 			await connect();
 			Minds.SQL.runQuery(`

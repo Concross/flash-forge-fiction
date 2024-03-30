@@ -18,6 +18,8 @@
 		// Returns the updated response value
 		response: (res: string) => console.log('response:', res)
 	};
+
+	$: flag_summary_continuation_enabled = $page.data.flags.summary_continuation?.enabled;
 </script>
 
 <div>
@@ -36,7 +38,9 @@
 			{/if}
 		</svelte:fragment>
 	</TabGroup>
-	<button type="button" class="btn variant-filled" on:click={() => modalStore.trigger(modal)}>
-		Continue the story...
-	</button>
+	{#if flag_summary_continuation_enabled}
+		<button type="button" class="btn variant-filled" on:click={() => modalStore.trigger(modal)}>
+			Continue the story...
+		</button>
+	{/if}
 </div>
