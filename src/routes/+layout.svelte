@@ -36,7 +36,7 @@
 		<!-- App Bar -->
 		<AppBar>
 			<svelte:fragment slot="lead">
-				<strong class="text-xl uppercase">Flash Forge Fiction</strong>
+				<a href="/"><strong class="text-xl uppercase">Flash Forge Fiction</strong></a>
 			</svelte:fragment>
 			<svelte:fragment slot="trail">
 				{#if $page.data.session}

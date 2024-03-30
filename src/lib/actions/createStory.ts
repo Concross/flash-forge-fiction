@@ -9,6 +9,7 @@ import connect from '$lib/server/minds';
 const Minds = MindsDB.default as typeof MindsDB;
 
 export const createStory: Action = async ({ request, locals }) => {
+	console.log(locals);
 	const data = await request.formData();
 	const title = data.get('title');
 	const content = data.get('content');
@@ -32,23 +33,24 @@ export const createStory: Action = async ({ request, locals }) => {
 		}
 	});
 
-	await connect();
-
-	try {
-		Minds.SQL.runQuery(`
-                UPDATE flash_forge_fiction_db.Story
+	if (locals.flags?.enable_ai_summarization) {
+		try {
+			await connect();
+			Minds.SQL.runQuery(`
+                UPDATE flash_forge_db.Story
                 SET
                     summaryCompletedAt = NOW(),
                     summary = prediction_data.summary
                 FROM (
                     SELECT input.\`content\`, input.title, model.summary 
-                    FROM flash_forge_fiction_db.Story AS input
+                    FROM flash_forge_db.Story AS input
                     JOIN text_summarization_model AS model
                 ) as prediction_data
                 WHERE id=${response.id};
             `);
-	} catch (error) {
-		console.error('Failed to summarize story:', error);
+		} catch (error) {
+			console.error('Failed to summarize story:', error);
+		}
 	}
 
 	throw redirect(303, `/story/${response.id}`);
