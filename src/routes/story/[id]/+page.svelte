@@ -1,11 +1,22 @@
 <script lang="ts">
-	import Typewriter from 'svelte-typewriter';
 	import Leader from '$lib/components/atoms/Leader/index.svelte';
-	import { TabGroup, Tab, TabAnchor } from '@skeletonlabs/skeleton';
+	import { TabGroup, Tab, type ModalSettings } from '@skeletonlabs/skeleton';
+	import { getModalStore } from '@skeletonlabs/skeleton';
 	import Prisma from '@prisma/client';
 	import { page } from '$app/stores';
 
+	const modalStore = getModalStore();
 	let tabSet: number = 0;
+	const modal: ModalSettings = {
+		type: 'component',
+		component: 'storyContinuationModal',
+		title: $page.data.story.title,
+		body: $page.data.story.summary,
+		value: '',
+		valueAttr: { type: 'text', minlength: 70, maxlength: 1000, required: true },
+		// Returns the updated response value
+		response: (res: string) => console.log('response:', res)
+	};
 </script>
 
 <div>
@@ -24,11 +35,7 @@
 			{/if}
 		</svelte:fragment>
 	</TabGroup>
+	<button type="button" class="btn variant-filled" on:click={() => modalStore.trigger(modal)}>
+		Continue the story...
+	</button>
 </div>
-
-<style lang="postcss">
-	:root {
-		--cursor-width: 0.25rem;
-		--cursor-color: rgba(var(--color-primary-900) / 1);
-	}
-</style>

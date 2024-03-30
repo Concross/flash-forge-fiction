@@ -3,13 +3,28 @@
 
 	// Floating UI for Popups
 	import { computePosition, autoUpdate, flip, shift, offset, arrow } from '@floating-ui/dom';
-	import { AppShell, AppRail, AppBar, storePopup } from '@skeletonlabs/skeleton';
-	storePopup.set({ computePosition, autoUpdate, flip, shift, offset, arrow });
+	import {
+		AppBar,
+		AppShell,
+		storePopup,
+		Modal,
+		initializeStores,
+		type ModalComponent
+	} from '@skeletonlabs/skeleton';
 
 	import { signIn, signOut } from '@auth/sveltekit/client';
 	import { page } from '$app/stores';
+	import StoryContinuationModal from '$lib/components/atoms/StoryContinuationModal/index.svelte';
+
+	const modalRegistry: Record<string, ModalComponent> = {
+		storyContinuationModal: { ref: StoryContinuationModal }
+	};
+
+	initializeStores();
+	storePopup.set({ computePosition, autoUpdate, flip, shift, offset, arrow });
 </script>
 
+<Modal components={modalRegistry} />
 <AppShell>
 	<svelte:fragment slot="header">
 		<!-- App Bar -->
