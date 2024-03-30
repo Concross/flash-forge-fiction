@@ -1,8 +1,12 @@
 import { fail, redirect } from '@sveltejs/kit';
-
 import type { Action } from '@sveltejs/kit';
 import Prisma from '@prisma/client';
 import prisma from '$lib/server/prisma';
+import MindsDB from 'mindsdb-js-sdk';
+import connect from '$lib/server/minds';
+
+// @ts-expect-error - Type and default import conflict
+const Minds = MindsDB.default as typeof MindsDB;
 
 export const createStory: Action = async ({ request, locals }) => {
 	const data = await request.formData();
@@ -26,6 +30,25 @@ export const createStory: Action = async ({ request, locals }) => {
 			userId: user.id
 		}
 	});
+
+	await connect();
+
+	try {
+		Minds.SQL.runQuery(`
+                UPDATE flash_forge_fiction_db.Story
+                SET
+                    summaryCompletedAt = NOW(),
+                    summary = prediction_data.summary
+                FROM (
+                    SELECT input.\`content\`, input.title, model.summary 
+                    FROM flash_forge_fiction_db.Story AS input
+                    JOIN text_summarization_model AS model
+                ) as prediction_data
+                WHERE id=${response.id};
+            `);
+	} catch (error) {
+		console.error('Failed to summarize story:', error);
+	}
 
 	throw redirect(303, `/story/${response.id}`);
 };
