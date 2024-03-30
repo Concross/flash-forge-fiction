@@ -33,8 +33,8 @@
 	{#if creatorCard}
 		{#if editing}
 			<form method="POST" action="?/createStory">
-				<input type="text" bind:value={title} class="text-token" placeholder="Title" name="title" />
-				<textarea bind:value={content} class="text-token" placeholder="Content" name="content"
+				<input type="text" bind:value={title} class="input mb-2" placeholder="Title" name="title" />
+				<textarea bind:value={content} class="textarea h-32" placeholder="Content" name="content"
 				></textarea>
 				<button type="submit">Create</button>
 				<button on:click={discardChanges}>Cancel</button>
