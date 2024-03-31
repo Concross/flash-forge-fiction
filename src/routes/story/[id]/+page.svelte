@@ -14,9 +14,9 @@
 		title: $page.data.story.title,
 		body: $page.data.story.summary,
 		value: '',
-		valueAttr: { type: 'text', minlength: 70, maxlength: 1000, required: true },
-		// Returns the updated response value
-		response: (res: string) => console.log('response:', res)
+		meta: {
+			story: $page.data.story
+		}
 	};
 
 	$: flag_summary_continuation_enabled = $page.data.flags.summary_continuation?.enabled;

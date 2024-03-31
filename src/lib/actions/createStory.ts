@@ -9,7 +9,6 @@ import connect from '$lib/server/minds';
 const Minds = MindsDB.default as typeof MindsDB;
 
 export const createStory: Action = async ({ request, locals }) => {
-	console.log(locals);
 	const data = await request.formData();
 	const title = data.get('title');
 	const content = data.get('content');
