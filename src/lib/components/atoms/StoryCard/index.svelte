@@ -1,5 +1,6 @@
 <script lang="ts">
 	import Prisma from '@prisma/client';
+	import {} from '@sveltejs/kit';
 
 	type StoryWithSummary = Prisma.Story & { summary: string };
 	export let story: StoryWithSummary | null;
@@ -43,7 +44,7 @@
 			<button on:click={startEditing} class="text-xl">+</button>
 		{/if}
 	{:else}
-		<a href={`story/${story?.id}`}>
+		<a href={`/story/${story?.id}`}>
 			<h2 class="text-2xl font-bold text-token">{story?.title || 'Title'}</h2>
 			<p class="text-token">{story?.summary || story?.content || 'Content'}</p>
 		</a>

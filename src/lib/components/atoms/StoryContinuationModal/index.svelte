@@ -9,11 +9,6 @@
 	const formData = {
 		continuation: ''
 	};
-
-	function onFormSubmit(): void {
-		if ($modalStore[0].response) $modalStore[0].response(formData);
-		modalStore.close();
-	}
 </script>
 
 {#if $modalStore[0]}
