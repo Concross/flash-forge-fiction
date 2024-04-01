@@ -10,7 +10,8 @@ export const load: PageServerLoad = async ({ params }) => {
 				id: parseInt(params.id)
 			},
 			include: {
-				user: true
+				user: true,
+				continuations: true
 			}
 		});
 

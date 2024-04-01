@@ -45,8 +45,8 @@
 		{/if}
 	{:else}
 		<a href={`/story/${story?.id}`}>
-			<h2 class="text-2xl font-bold text-token">{story?.title || 'Title'}</h2>
-			<p class="text-token">{story?.summary || story?.content || 'Content'}</p>
+			<h2 class="text-2xl font-bold h2">{story?.title || 'Title'}</h2>
+			<p class="p">{story?.summary || story?.content || 'Content'}</p>
 		</a>
 	{/if}
 </div>
