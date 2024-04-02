@@ -47,5 +47,8 @@
 			</svelte:fragment>
 		</AppBar>
 	</svelte:fragment>
-	<slot />
+
+	<main class="p-10">
+		<slot />
+	</main>
 </AppShell>

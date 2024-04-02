@@ -33,15 +33,38 @@
 <div class="p-5 card">
 	{#if creatorCard}
 		{#if editing}
-			<form method="POST" action="?/createStory">
-				<input type="text" bind:value={title} class="input mb-2" placeholder="Title" name="title" />
-				<textarea bind:value={content} class="textarea h-32" placeholder="Content" name="content"
-				></textarea>
-				<button type="submit">Create</button>
-				<button on:click={discardChanges}>Cancel</button>
+			<form method="POST" action="?/createStory" id="create-story-form" class="h-full pb-20">
+				<input
+					type="text"
+					bind:value={title}
+					class="input mb-2 text-2xl font-bold rounded-md"
+					placeholder="Title"
+					name="title"
+				/>
+				<textarea
+					bind:value={content}
+					class="textarea h-full"
+					placeholder="Begin..."
+					name="content"
+					form="create-story-form"
+				/>
+				<div class="flex justify-around">
+					<button on:click={discardChanges}>Cancel</button>
+					<button type="submit">Create</button>
+				</div>
 			</form>
 		{:else}
-			<button on:click={startEditing} class="text-xl">+</button>
+			<div class="h-full pb-20">
+				<h2 class="text-2xl font-bold mb-2">Where will your story lead?</h2>
+				<textarea
+					bind:value={content}
+					class="textarea h-full"
+					placeholder="Begin..."
+					name="content"
+					form="create-story-form"
+					on:focus={startEditing}
+				/>
+			</div>
 		{/if}
 	{:else}
 		<a href={`/story/${story?.id}`}>

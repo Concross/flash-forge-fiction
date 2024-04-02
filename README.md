@@ -2,7 +2,7 @@
 
 ## Project Description
 
-Flash Forge Fiction is a collaborative writing platform designed to spark creativity and forge connections through storytelling. In this unique space, users come together to create and continue stories in just a few hundred words, making every contribution a pivotal piece of an ever-evolving narrative tapestry. The project aims to offer an unpredictable and enjoyable writing experience, where the simplicity of text-based collaboration is harnessed to bring writers' imaginations to life.
+Flash Forge Fiction is a collaborative writing platform designed to spark creativity and forge connections through storytelling. In this unique space, users come together to create and continue stories in just a hundred words, making every contribution a pivotal piece of an ever-evolving narrative tapestry. The project aims to offer an unpredictable and enjoyable writing experience, where the simplicity of text-based collaboration is harnessed to bring writers' imaginations to life.
 
 Flash Forge Fiction is developed as part of the Dev Quest challenge, specifically tailored for a 40-hour MVP to demonstrate rapid development and innovative use of technology in creating engaging, community-driven platforms.
 
@@ -16,6 +16,10 @@ Flash Forge Fiction is developed as part of the Dev Quest challenge, specificall
   - **[FlagSmith](https://flagsmith.com/):** A feature flag and remote config service. FlagSmith allows us to test new features like voting systems and story direction choices in a controlled manner, enabling or disabling features without deploying new code.
   - **[MindsDB](https://www.mindsdb.com/):** An AI layer for existing databases that enables predictive modeling directly from the database. MindsDB will be used to generate story prompts, summarize drafts, and automatically tag novel themes, enhancing the user experience by suggesting content and organizing stories intelligently.
 
+## Demo
+
+TODO
+
 ## Contributing to Flash Forge Fiction
 
 ### Prerequisites
@@ -24,6 +28,7 @@ Before contributing to Flash Forge Fiction, ensure you have the following instal
 
 - Node.js (v18.5.5 or higher)
 - A package manager (npm, pnpm or yarn)
+- Docker/Docker-compose
 - Git for version control
 
 ### Getting Started
@@ -55,7 +60,7 @@ Before contributing to Flash Forge Fiction, ensure you have the following instal
      yarn
      ```
 
-3. **Running the Development Server**
+3. **Running the Development Web Server**
 
    - To start the SvelteKit development server, run:
 
@@ -77,7 +82,27 @@ Before contributing to Flash Forge Fiction, ensure you have the following instal
 
    - Open [http://localhost:3000](http://localhost:3000) to view the application in your browser. The app will automatically reload if you make edits.
 
-4. **Making Contributions**
+4. **Running MySQL, MindsDB, and Flagsmith services**
+
+   - To start the backend services run:
+
+   ```
+   pnpm run docker:up
+   ```
+
+   or
+
+   ```
+   npm run docker:up
+   ```
+
+   or
+
+   ```
+   yarn docker:up
+   ```
+
+5. **Making Contributions**
    - Create a new branch for your feature or bug fix:
      ```
      git checkout -b feature/your-feature-name
@@ -98,4 +123,4 @@ Before contributing to Flash Forge Fiction, ensure you have the following instal
 - **Commit Messages:** Write clear and meaningful commit messages to make the project history easier to understand.
 - **Documentation:** Update the README.md or other documentation files as necessary to reflect new features or changes in the project setup.
 
-Thank you for considering to contribute to Flash Forge Fiction. Your efforts will help us create a more engaging and enjoyable platform for storytellers everywhere.
+Thank you for considering to contribute to Flash Forge Fiction!
